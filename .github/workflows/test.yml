@@ -25,14 +25,14 @@ jobs:
         python-version: 3.12
 
     - name: install dependencies
-      runs: | 
+      run: | 
         pip install -r requirements.txt
 
     - name: run containers
-      runs: docker compose up --build
+      run: docker compose up --build
 
     - name: run tests
-      runs: pytest tests.py
+      run: pytest tests.py
 
 
       
