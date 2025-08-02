@@ -34,6 +34,20 @@ jobs:
     - name: run containers
       run: docker compose up -d --build
 
+    - name: wait for python to be rdy
+      run: |
+        for i in {1..10}; do
+        if curl -f http://localhost:8000; then
+          echo "backend is ready";
+          exit 0;
+        fi
+        echo "waiting for backend";
+        sleep 3;
+          done
+          echo "backend failed to start";
+          docker logs micro
+          exit 1
+
     - name: run tests
       run: pytest tests.py
 
